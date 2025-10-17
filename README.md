@@ -138,3 +138,28 @@ The **Airbnb Clone Backend** is structured around several core entities that mod
 - **Property → Booking:** One-to-Many  
 - **Property → Review:** One-to-Many  
 - **Booking → Payment:** One-to-One
+
+## ✨ Feature Breakdown
+
+The **Airbnb Clone Backend** includes a set of core features designed to replicate and support the key functionalities of an Airbnb-style platform. Each feature contributes to delivering a seamless, secure, and efficient user experience.
+
+### 👤 User Management
+Handles user registration, authentication, and profile management. This ensures secure access control and allows users to manage their accounts, whether they are guests or hosts, while maintaining data privacy and integrity.
+
+### 🏡 Property Management
+Enables hosts to create, update, and manage property listings with essential details such as descriptions, images, pricing, and availability. This feature allows properties to be easily discoverable and bookable by potential guests.
+
+### 📅 Booking System
+Manages reservations between guests and hosts, including check-in and check-out dates, availability checks, and booking modifications. It ensures accurate scheduling and prevents double bookings while maintaining a clear transaction history.
+
+### 💳 Payment Processing
+Integrates secure payment workflows that handle transactions for bookings. This includes processing, validating, and recording payments, ensuring both guests and hosts can transact safely and reliably.
+
+### ⭐ Review System
+Allows guests to leave ratings and feedback on properties after their stay. Reviews help build trust within the platform, improve host accountability, and enhance the overall user experience through transparency.
+
+### ⚡ Database Optimization
+Implements indexing and caching strategies to enhance performance and reduce query time. These optimizations ensure efficient data retrieval and scalability as the platform grows.
+
+### 📘 API Documentation
+Provides detailed RESTful and GraphQL API documentation following the **OpenAPI standard**. This ensures clarity and ease of integration for frontend developers, testers, and third-party services.
