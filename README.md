@@ -163,3 +163,76 @@ Implements indexing and caching strategies to enhance performance and reduce que
 
 ### 📘 API Documentation
 Provides detailed RESTful and GraphQL API documentation following the **OpenAPI standard**. This ensures clarity and ease of integration for frontend developers, testers, and third-party services.
+
+## 🔐 API Security
+
+Security is a first-class concern in the **Airbnb Clone Backend**. The following measures protect user data, payments, and platform integrity across REST and GraphQL interfaces.
+
+### ✅ Authentication
+- **What we use:** JWT (access/refresh tokens) or OAuth2; secure password hashing (Argon2/BCrypt); optional MFA.
+- **Why it matters:** Verifies identity, prevents account takeover, and protects private resources (profiles, bookings, payments).
+
+### 🛂 Authorization
+- **What we use:** Role-Based Access Control (guest/host/admin) and object-level permissions (e.g., only the host can edit their property).
+- **Why it matters:** Stops horizontal/vertical privilege escalation and prevents IDOR (Insecure Direct Object Reference).
+
+### 📈 Rate Limiting & Throttling
+- **What we use:** DRF throttles, IP/user-based limits, login attempt caps; caching via Redis.
+- **Why it matters:** Preserves availability, reduces brute-force/login stuffing, and mitigates abuse/DDoS.
+
+### 🔒 Transport Security (HTTPS/TLS)
+- **What we use:** TLS 1.2+, HSTS, secure cookies, no mixed content.
+- **Why it matters:** Encrypts data in transit (logins, payments) to prevent interception or tampering.
+
+### 🧪 Input Validation & Query Safety
+- **What we use:** DRF serializers/validators, parameterized queries via ORM, GraphQL query depth/complexity limits.
+- **Why it matters:** Defends against SQLi, injection, over-fetching, and resource exhaustion.
+
+### 🧰 Secrets & Config Management
+- **What we use:** Environment variables, secret managers (e.g., Vault/SSM), no secrets in code/CI logs.
+- **Why it matters:** Prevents credential leaks that could expose databases, payment processors, and infrastructure.
+
+### 🧱 CORS, CSRF & Security Headers
+- **What we use:** Strict CORS allowlists, CSRF protection for cookie-based auth, headers like CSP, X-Frame-Options, X-Content-Type-Options.
+- **Why it matters:** Mitigates CSRF, clickjacking, MIME sniffing, and cross-origin data theft.
+
+### 🔐 Data Protection at Rest
+- **What we use:** Encryption at rest (DB/disk), field-level encryption for PII; least-privilege DB roles.
+- **Why it matters:** Limits blast radius from storage breaches and protects sensitive user/payment data.
+
+### 🧾 Auditing, Logging & Monitoring
+- **What we use:** Structured logs, audit trails for auth and data changes, anomaly alerts; log redaction for PII.
+- **Why it matters:** Detects intrusion, supports incident response, and meets compliance needs.
+
+### 💳 Payment Security
+- **What we use:** Tokenized payments via a PCI-DSS–compliant provider; webhook verification; idempotency keys for charges.
+- **Why it matters:** Protects financial data, prevents double charges, and ensures trustworthy transactions.
+
+### 📄 API Surface Hardening
+- **What we use:** Minimal error messages, pagination to prevent enumeration, consistent resource scoping, disabled admin endpoints in prod.
+- **Why it matters:** Reduces information leakage and prevents bulk data scraping.
+
+### 🗂️ File & Media Safety
+- **What we use:** Extension/MIME checks, AV scanning, signed URLs, isolated storage (e.g., S3) with least-privilege access.
+- **Why it matters:** Blocks malicious uploads and protects user galleries/listing photos.
+
+### 🧬 Dependency & CI/CD Security
+- **What we use:** Dependency scanning (pip audit), pinning versions, SAST/DAST, signed images, Docker rootless runtime.
+- **Why it matters:** Prevents supply-chain attacks and secures the delivery pipeline.
+
+### 🔄 Background Jobs & Caching
+- **What we use:** Celery task auth/signing, private Redis with auth/TLS, no secrets in task payloads.
+- **Why it matters:** Ensures background processing and cache layers can’t be abused to exfiltrate data.
+
+### 👥 Privacy & Compliance
+- **What we use:** Data minimization, retention limits, user consent flows, right-to-delete/export hooks.
+- **Why it matters:** Protects user privacy and supports regulatory obligations (e.g., GDPR-like controls).
+
+**Security priorities across domains**
+- **Protecting user data:** PII encryption, strict access controls, and minimal exposure.
+- **Securing payments:** PCI-aligned flows, tokenization, and strong webhook verification.
+- **Safeguarding bookings & listings:** Object-level permissions and audit trails to maintain integrity.
+- **Maintaining availability:** Rate limits, caching, and monitoring to withstand abuse and spikes.
+
+
+
