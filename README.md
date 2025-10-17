@@ -48,3 +48,93 @@ A containerization platform that ensures consistent development and deployment e
 
 ### 🚀 CI/CD Pipelines
 Automated continuous integration and deployment pipelines that streamline testing, building, and deploying code changes, ensuring rapid and reliable delivery of new features.
+
+## 🗄️ Database Design
+
+The **Airbnb Clone Backend** is structured around several core entities that model users, properties, bookings, reviews, and payments. The database design ensures data consistency, scalability, and easy integration with both RESTful and GraphQL APIs.
+
+### 👤 Users
+**Description:** Represents individuals who can act as guests or hosts within the platform.  
+**Key Fields:**
+- `id` – Unique identifier for each user.  
+- `username` – The user's display or login name.  
+- `email` – Used for authentication and communication.  
+- `password_hash` – Securely stored password hash.  
+- `role` – Defines whether the user is a host, guest, or admin.  
+
+**Relationships:**
+- A **user** can list multiple **properties**.  
+- A **user** can make multiple **bookings**.  
+- A **user** can write multiple **reviews**.
+
+---
+
+### 🏡 Properties
+**Description:** Represents properties listed by hosts for rental.  
+**Key Fields:**
+- `id` – Unique identifier for each property.  
+- `title` – Name or headline for the property.  
+- `description` – Detailed information about the property.  
+- `price_per_night` – Cost of renting per night.  
+- `host_id` – Foreign key linking to the user who owns the property.  
+
+**Relationships:**
+- A **property** belongs to one **user (host)**.  
+- A **property** can have multiple **bookings** and **reviews**.
+
+---
+
+### 📅 Bookings
+**Description:** Represents reservations made by guests for specific properties.  
+**Key Fields:**
+- `id` – Unique booking identifier.  
+- `user_id` – Foreign key referencing the guest who made the booking.  
+- `property_id` – Foreign key referencing the booked property.  
+- `check_in` – Start date of the booking.  
+- `check_out` – End date of the booking.  
+
+**Relationships:**
+- A **booking** belongs to one **user (guest)**.  
+- A **booking** is linked to one **property**.  
+- A **booking** can have one **payment record**.
+
+---
+
+### 💳 Payments
+**Description:** Tracks payment transactions for property bookings.  
+**Key Fields:**
+- `id` – Unique payment identifier.  
+- `booking_id` – Foreign key linking to the related booking.  
+- `amount` – Total payment amount.  
+- `payment_status` – Status of the payment (e.g., pending, completed, failed).  
+- `timestamp` – Date and time of the transaction.  
+
+**Relationships:**
+- A **payment** is associated with one **booking**.  
+- A **booking** can have one **payment**.
+
+---
+
+### ⭐ Reviews
+**Description:** Allows guests to leave feedback and ratings for properties they’ve stayed in.  
+**Key Fields:**
+- `id` – Unique review identifier.  
+- `user_id` – Foreign key referencing the reviewer.  
+- `property_id` – Foreign key referencing the reviewed property.  
+- `rating` – Numeric score given by the guest.  
+- `comment` – Text feedback from the guest.  
+
+**Relationships:**
+- A **review** belongs to one **user (guest)**.  
+- A **review** belongs to one **property**.  
+- A **property** can have multiple **reviews**.
+
+---
+
+### 🔗 Entity Relationships Summary
+- **User → Property:** One-to-Many  
+- **User → Booking:** One-to-Many  
+- **User → Review:** One-to-Many  
+- **Property → Booking:** One-to-Many  
+- **Property → Review:** One-to-Many  
+- **Booking → Payment:** One-to-One
