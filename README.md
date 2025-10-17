@@ -234,5 +234,26 @@ Security is a first-class concern in the **Airbnb Clone Backend**. The following
 - **Safeguarding bookings & listings:** Object-level permissions and audit trails to maintain integrity.
 - **Maintaining availability:** Rate limits, caching, and monitoring to withstand abuse and spikes.
 
+## 🚀 CI/CD Pipeline
 
+### What is CI/CD?
+**Continuous Integration (CI)** and **Continuous Deployment (CD)** are practices that automate the process of building, testing, and deploying code changes.  
+They ensure that new features, bug fixes, and updates are integrated into the project smoothly and reliably, reducing human error and speeding up development.
+
+### Why It’s Important
+Implementing CI/CD in the **Airbnb Clone Backend**:
+- Ensures consistent code quality through automated testing.  
+- Reduces deployment risks by validating each change before release.  
+- Speeds up feature delivery and feedback cycles.  
+- Provides a reliable, repeatable workflow from development to production.
+
+### 🧰 Tools and Technologies
+- **GitHub Actions:** Automates the CI/CD workflows, including testing, linting, and deployment.  
+- **Docker:** Ensures consistent application environments across development, staging, and production.  
+- **Docker Compose:** Orchestrates multi-container setups (e.g., Django, PostgreSQL, Redis) for integration testing.  
+- **Celery + Redis:** Used in the background to process asynchronous tasks during deployment and testing.  
+- **PostgreSQL:** Integrated in the testing pipeline to validate database interactions.  
+- **Cloud Hosting (e.g., AWS, Azure, or Heroku):** For automated deployment of Dockerized builds to production environments.  
+
+By leveraging CI/CD, the project achieves **rapid, reliable, and secure delivery** of backend updates with minimal downtime.
 
